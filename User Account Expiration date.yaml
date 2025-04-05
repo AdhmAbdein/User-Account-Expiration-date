@@ -1,0 +1,17 @@
+---
+  - name: user creation and add expiration date
+    hosts: all
+    become: yes
+    vars:
+      - name_: 'test_user'
+      - exp: '2025-12-1'
+    tasks:
+      - name: create user
+        user:
+          name: "{{ name_ }}"
+  
+      - name: add expiration date to user
+        command: chage -E "{{ exp }}" {{ name_ }}
+  
+  
+  
